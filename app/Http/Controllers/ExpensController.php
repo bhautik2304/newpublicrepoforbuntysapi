@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\stafftype;
+use App\Models\expens;
 use Illuminate\Http\Request;
 
-class StafftypeController extends Controller
+class ExpensController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,6 @@ class StafftypeController extends Controller
     public function index()
     {
         //
-        return response(["stafftype"=>stafftype::all()],200);
     }
 
     /**
@@ -31,26 +30,21 @@ class StafftypeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $req
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $req)
+    public function store(Request $request)
     {
         //
-        $tabel=new stafftype;
-        $tabel->name=$req->name;
-        $tabel->save();
-
-        return response(["msg"=>"Staff Type $req->name Created Succesfully"],200);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\stafftype  $stafftype
+     * @param  \App\Models\expens  $expens
      * @return \Illuminate\Http\Response
      */
-    public function show(stafftype $stafftype)
+    public function show(expens $expens)
     {
         //
     }
@@ -58,10 +52,10 @@ class StafftypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\stafftype  $stafftype
+     * @param  \App\Models\expens  $expens
      * @return \Illuminate\Http\Response
      */
-    public function edit(stafftype $stafftype)
+    public function edit(expens $expens)
     {
         //
     }
@@ -69,11 +63,11 @@ class StafftypeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $req
-     * @param  \App\Models\stafftype  $stafftype
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\expens  $expens
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $req, stafftype $stafftype)
+    public function update(Request $request, expens $expens)
     {
         //
     }
@@ -81,10 +75,10 @@ class StafftypeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\stafftype  $stafftype
+     * @param  \App\Models\expens  $expens
      * @return \Illuminate\Http\Response
      */
-    public function destroy(stafftype $stafftype)
+    public function destroy(expens $expens)
     {
         //
     }

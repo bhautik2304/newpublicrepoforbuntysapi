@@ -27,6 +27,8 @@ class CreateStoresTable extends Migration
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->string('map')->nullable();
+            $table->string('lat')->nullable();
+            $table->string('long')->nullable();
             $table->timestamps();
         });
     }

@@ -44,13 +44,13 @@ class StoreController extends Controller
         $store->avatar=$req->avatar;
         $store->email=$req->email;
         $store->mobaile=$req->mobaile;
+        // $store->whatsapp=$req->mobaile;
         $store->password=Hash::make($req->password);
         $store->opentime=$req->opentime;
         $store->closetime=$req->closetime;
         $store->address=$req->address;
         $store->pin=$req->pin;
         $store->city=$req->city;
-        $store->state=$req->state;
         $store->map=$req->map;
         $store->save();
 

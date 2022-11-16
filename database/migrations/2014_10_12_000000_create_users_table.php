@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('mobaile')->unique()->nullable();
             $table->string('whatsapp')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->text('password');
             $table->rememberToken();
             $table->timestamps();
         });
