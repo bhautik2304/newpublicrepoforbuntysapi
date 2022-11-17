@@ -34,3 +34,7 @@ if (curl_errno($ch)) {
 curl_close($ch);
 return $result;
 });
+
+Route::get('/info',function (){
+    return view('welcome');
+});
