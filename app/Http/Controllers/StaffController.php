@@ -40,22 +40,56 @@ class StaffController extends Controller
         $table=new staff;
         $table->storeid=$req->storeid;
         $table->stafftypesid=$req->stafftypesid;
+        // personel Info
         $table->name=$req->name;
         $table->lastname=$req->lastname;
         $table->gender=$req->gender;
         $table->img=$req->img;
         $table->designation=$req->designation;
-        $table->address=$req->address;
-        $table->city=$req->city;
-        $table->email=$req->email;
-        $table->mobaile=$req->mobaile;
-        $table->whatsapp=$req->whatsapp;
-        $table->workstarttime=$req->workstarttime;
-        $table->workemdtime=$req->workemdtime;
+  // Contact Info
+  $table->email=$req->email;
+  $table->mobaile=$req->mobaile;
+  $table->whatsapp=$req->whatsapp;
+  // Address
+   // city: city,
+    // state: state,
+    // pin: pin,
+    // permenentAddress: permenentAddress,
+    // ResidentAddresses: ResidentAddresses,
+
+  // Jpb Timeing
+  // jobstart: jobstart,
+    // jobhours: jobhours,
+    // Weekend: Weekend,
+  $table->workstarttime=$req->workstarttime;
+  $table->workemdtime=$req->workemdtime;
+  // Payout
+
+  // sallery: sallery,
+    // ProductSale: ProductSale,
+    // PkgSale: PkgSale,
+    // serviceSale: serviceSale,
+    // serviceExicute: serviceExicute,
+
+  // Benifits
+ // pf: pf,
+    // ins: ins,
+    // mediClaim: mediClaim,
+
         $table->save();
 
         return response(["msg"=>"Staff $req->name $req->lastname Created Succesfully"],200);
     }
+    // firstname: firstname,
+    // lastname: lastname,
+    // middelname: middelname,
+    // mobaile: mobaile,
+    // whatmobaile: whatmobaile,
+    // email: email,
+
+
+
+
 
     /**
      * Display the specified resource.
