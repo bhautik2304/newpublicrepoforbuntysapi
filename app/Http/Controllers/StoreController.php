@@ -56,7 +56,9 @@ class StoreController extends Controller
 
         return response(["msg"=>"$req->name Store Created Succesfully"],200);
     }
+/*
 
+*/
     /**
      * Display the specified resource.
      *

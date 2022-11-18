@@ -31,6 +31,16 @@ Route::apiResource('/Service',ServiceController::class);
 Route::post('/costumertype',[CostumerController::class,'costomertypes']);
 Route::get('/costumertype',[CostumerController::class,'costomer']);
 
+Route::post('test', function (Request $req)
+{
+    # code...
+    if(!$req->has('img')){
+        return response(["msg"=>'we got a file'],200);
+    }else{
+
+        return response(["msg"=>'We are NOt Get a file'],200);
+    }
+});
 // Route::apiResource('/appointment', appointmentController::class);
 
 // Route::post('/auth', [authcontroller::class]);
