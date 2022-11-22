@@ -40,7 +40,6 @@ class CostumerController extends Controller
         $table=new costumer;
         // storeid
         $table->storeid =$req->storeid;
-        $table->costomertypeid =1;
         // costomer categury
 
         // costomer info

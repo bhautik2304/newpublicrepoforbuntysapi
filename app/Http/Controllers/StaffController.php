@@ -15,7 +15,7 @@ class StaffController extends Controller
     public function index()
     {
         //
-        return response(["staff"=>staff::all()],200);
+        return response(["staff" => staff::all()], 200);
     }
 
     /**
@@ -37,82 +37,90 @@ class StaffController extends Controller
     public function store(Request $req)
     {
         //
-        $table=new staff;
-$table->storeid=$req->StoreId;
-$table->stafftypesid=$req->stufftype;
-
-$table->name=$req->middelname;
-$table->lastname=$req->lastname;
-$table->firstname=$req->firstname;
-$table->email=$req->email;
-$table->mobaile=$req->mobaile;
-$table->whatsapp_mobaile=$req->whatmobaile;
+        $data = json_decode($req->datas);
+        $table = new staff;
+        $table->storeid =$data->StoreId;
+        $table->stafftypesid =$data->stufftype;
 
 
-$table->birthday=$req->birthday;
-$table->annyversy_day=$req->marrige_anny;
+        $table->name = $data->middelname;
+        $table->lastname = $data->lastname;
+        $table->firstname = $data->firstname;
+        $table->email = $data->email;
+        $table->mobaile = $data->mobaile;
+        $table->whatsapp_mobaile = $data->whatmobaile;
 
 
-$table->profile_img=$req->img;
-$table->gender=$req->gender;
-$table->maritial_status=$req->marit_status;
+        $table->birthday = $data->birthday;
+        $table->annyversy_day = $data->marrige_anny;
 
 
-$table->city=$req->city;
-$table->state=$req->state;
-$table->pin=$req->pin;
-$table->per_add=$req->permenentAddress;
-$table->res_add=$req->ResidentAddresses;
+        $table->gender = $data->gender;
+        $table->maritial_status = 1; //$data->marit_status;
 
 
-$table->job_starting_time=$req->jobstart;
-$table->job_hours=$req->jobhours;
-$table->weekend=$req->Weekend;
+        $table->city = $data->city;
+        $table->state = $data->state;
+        $table->pin = $data->pin;
+        $table->per_add = $data->permenentAddress;
+        $table->res_add = $data->ResidentAddresses;
 
 
-$table->sallery=$req->sallery;
-$table->product_sale=$req->ProductSale;
-$table->service_sale=$req->serviceSale;
-$table->service_exc=$req->serviceExicute;
-$table->pkg_sale=$req->PkgSale;
+        $table->job_starting_time = $data->jobstart;
+        $table->job_hours = $data->jobhours;
+        $table->weekend = $data->Weekend;
 
 
-$table->addhar_doc_url=$req->;
-$table->pan_doc_url=$req->;
-$table->drl_doc_url=$req->;
-
-$table->addhar_no=$req->;
-$table->pan_no=$req->;
-$table->drl_no=$req->;
+        $table->sallery = $data->sallery;
+        $table->product_sale = $data->ProductSale;
+        $table->service_sale = $data->serviceSale;
+        $table->service_exc = $data->serviceExicute;
+        $table->pkg_sale = $data->PkgSale;
 
 
-$table->insuriuns=$req->ins;
-$table->mediclaim=$req->mediClaim;
-$table->pf=$req->pf;
 
 
-$table->bank_account_no=$req->bank_account_no;
-$table->bank_account_ifc=$req->bank_account_ifc;
-$table->bank_name=$req->bank_name;
-$table->bank_account_holder_name=$req->bank_account_holder_name;
-$table->bank_account_doc=$req->bank_account_doc;
+
+        $table->profile_img = $this->fileStore($req, 'profile_img', 'stuffprofile', );
+        $table->addhar_doc_url = $this->fileStore($req, 'adhar_card', 'stuffdoc', );
+        $table->pan_doc_url = $this->fileStore($req, 'pancard', 'stuffdoc', );
+        $table->drl_doc_url = $this->fileStore($req, 'driving_liences', 'stuffdoc', );
+        $table->bank_account_doc = $this->fileStore($req, 'bankstatement', 'stuffdoc', );
+
+
+
+        $table->addhar_no = $data->addhar_no;
+        $table->pan_no = $data->pan_no;
+        $table->drl_no = $data->drl_no;
+
+
+        $table->insuriuns = $data->ins;
+        $table->mediclaim = $data->mediClaim;
+        $table->pf = $data->pf;
+
+
+        $table->bank_account_no = $data->bank_account_no;
+        $table->bank_account_ifc = $data->bank_account_ifc;
+        $table->bank_name = $data->bank_name;
+        $table->bank_account_holder_name = $data->bank_account_holder_name;
         $table->save();
 
-        return response(["msg"=>"Staff $req->name $req->lastname Created Succesfully"],200);
+        return response(["msg" => "Staff $table->firstname $table->lastname Created Succesfully"], 200);
     }
 
-/*
-firstname: firstname,
-      lastname: lastname,
-      middelname: middelname,
+    protected function fileStore(Request $req, $files, $folder)
+    {
+        # code...
+        if ($req->has($files)) {
+            $file = $req->file($files);
+            $name = $file->getClientOriginalName() . '.' . $file->getClientOriginalExtension();
+            $file->move($folder, $name);
+            return url("$folder/$name");
+        } else {
 
-
-
-      img:img,
-      gender:gender ,
-
-*/
-
+            return response(["msg" => 'We are NOt Get a file'], 200);
+        }
+    }
 
 
     /**
@@ -155,8 +163,10 @@ firstname: firstname,
      * @param  \App\Models\staff  $staff
      * @$req \Illuminate\Http\Response
      */
-    public function destroy(staff $staff)
+    public function destroy(staff $staff,$id)
     {
         //
+        $staff->find($id)->delete();
+        return response(["msg"=>"delated Service"],200);
     }
 }
