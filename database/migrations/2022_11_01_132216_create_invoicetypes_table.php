@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class CreateInvoicetypesTable extends Migration
 {
@@ -15,6 +16,8 @@ class CreateInvoicetypesTable extends Migration
     {
         Schema::create('invoicetypes', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

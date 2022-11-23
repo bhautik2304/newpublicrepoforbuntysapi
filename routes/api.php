@@ -25,6 +25,8 @@ Route::apiResource('/store', StoreController::class);
 Route::apiResource('/stufftype', StafftypeController::class);
 Route::apiResource('/stuff', StaffController::class);
 
+Route::apiResource('/invoice', StaffController::class);
+
 Route::apiResource('/Servicetype', ServicetypeController::class);
 Route::apiResource('/Service', ServiceController::class);
 
