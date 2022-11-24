@@ -15,16 +15,17 @@ class CreateInvoicesTable extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('store_id')->references('id')->on('stores')->onDelete('cascade');
             $table->foreignId('costomer_id')->references('id')->on('costumers')->onDelete('cascade');
             $table->foreignId('invoicetypes_id')->references('id')->on('invoicetypes')->onDelete('cascade');
-            // $table->foreignId('invoicetypes_id')->references('id')->on('invoicetypes')->onDelete('cascade');
-            // $table->foreignId('invoicetypes_id')->references('id')->on('invoicetypes')->onDelete('cascade');
-            // $table->foreignId('')->references('id')->on('costumers')->onDelete('cascade');
+            // $table->foreignId('costomers_id')->references('id')->on('invoicetypes')->onDelete('cascade');
             $table->string('invoice_no')->nullable(true);
             $table->string('totale')->nullable(true);
+            $table->string('discountied_amount')->nullable(true);
             $table->string('discount')->nullable(true);
             $table->string('gst_amount')->nullable(true);
             $table->boolean('gst')->nullable(true);
+            $table->string('reward_point_readeem')->nullable(true);
             $table->timestamps();
         });
     }

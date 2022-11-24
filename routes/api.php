@@ -33,10 +33,3 @@ Route::apiResource('/Service', ServiceController::class);
 Route::post('/costumertype', [CostumerController::class, 'costomertypes']);
 Route::get('/costumertype', [CostumerController::class, 'costomer']);
 
-// Route::post('test', function (Request $req) {
-//     # code...
-
-// });
-// Route::apiResource('/appointment', appointmentController::class);
-
-// Route::post('/auth', [authcontroller::class]);

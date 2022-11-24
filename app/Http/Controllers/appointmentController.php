@@ -15,6 +15,7 @@ class appointmentController extends Controller
     public function index()
     {
         //
+        return response(['appoitment'=>appointment::all()],200);
     }
 
     /**
@@ -36,6 +37,14 @@ class appointmentController extends Controller
     public function store(Request $request)
     {
         //
+        $appoitment=new appointment;
+        $req->=;
+    }
+
+    public function storeAppoitment($req,$date)
+    {
+        //
+
     }
 
     /**

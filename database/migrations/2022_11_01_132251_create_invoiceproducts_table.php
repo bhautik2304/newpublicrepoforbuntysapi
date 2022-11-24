@@ -15,6 +15,8 @@ class CreateInvoiceproductsTable extends Migration
     {
         Schema::create('invoiceproducts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('store_id')->references('id')->on('stores')->onDelete('cascade');
+            $table->foreignId('costomer_id')->references('id')->on('costumers')->onDelete('cascade')->nullable(true);
             $table->foreignId('costomer_id')->references('id')->on('costumers')->onDelete('cascade')->nullable(true);
             $table->foreignId('staff_id')->references('id')->on('staff')->onDelete('cascade')->nullable(true);
             $table->string('totale')->nullable(true);
