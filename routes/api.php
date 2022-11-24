@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{authcontroller, appointmentController, StafftypeController, StaffController, ServiceController, CostumerController, ServicetypeController, StoreController};
+use App\Http\Controllers\{authcontroller, appointmentController, StafftypeController, StaffController, ServiceController, CostumerController, ServicetypeController, StoreController,InvoiceController};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +25,7 @@ Route::apiResource('/store', StoreController::class);
 Route::apiResource('/stufftype', StafftypeController::class);
 Route::apiResource('/stuff', StaffController::class);
 
-Route::apiResource('/invoice', StaffController::class);
+Route::post('/createinvoice', [InvoiceController::class,'invoiceCreate']);
 
 Route::apiResource('/Servicetype', ServicetypeController::class);
 Route::apiResource('/Service', ServiceController::class);
