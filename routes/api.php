@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\{authcontroller, appointmentController, StafftypeController, StaffController, ServiceController, CostumerController, ServicetypeController, StoreController,InvoiceController};
+use App\Models\store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,10 +34,10 @@ Route::apiResource('/Service', ServiceController::class);
 Route::post('/costumertype', [CostumerController::class, 'costomertypes']);
 Route::get('/costumertype', [CostumerController::class, 'costomer']);
 
-// Route::post('test', function (Request $req) {
-//     # code...
-
-// });
+Route::post('test', function (Request $req) {
+    # code...
+    return response(['store'=>store::where('id',1)->get()],200);
+});
 // Route::apiResource('/appointment', appointmentController::class);
 
 // Route::post('/auth', [authcontroller::class]);

@@ -15,6 +15,8 @@ class CreateRoleaccessesTable extends Migration
     {
         Schema::create('roleaccesses', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('roleid')->references('id')->on('roles')->onDelete('cascade');
+            $table->string('access');
             $table->timestamps();
         });
     }

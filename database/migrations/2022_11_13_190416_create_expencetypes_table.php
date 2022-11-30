@@ -15,6 +15,9 @@ class CreateExpencetypesTable extends Migration
     {
         Schema::create('expencetypes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('storeId')->references('id')->on('stores')->onDelete('cascade');
+            $table->string('name');
+            $table->string('amount');
             $table->timestamps();
         });
     }

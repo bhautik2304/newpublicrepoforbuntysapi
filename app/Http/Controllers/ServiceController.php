@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\storeUpdate;
 use App\Models\service;
+use Composer\EventDispatcher\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Broadcast;
 
 class ServiceController extends Controller
 {
@@ -43,7 +46,9 @@ class ServiceController extends Controller
         $table->price=$req->price;
         $table->minprice=$req->minprice;
         $table->save();
-
+        // Broadcast::event
+        event(new storeUpdate('Update Store'));
+        // Event::fire();
         return response(["msg"=>"Service $req->name Created Succesfully"],200);
     }
 

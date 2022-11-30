@@ -15,6 +15,9 @@ class CreatePakegeservicesTable extends Migration
     {
         Schema::create('pakegeservices', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('store_id')->references('id')->on('invoices')->onDelete('stores');
+            $table->foreignId('costomer_id')->references('id')->on('costumers')->onDelete('cascade');
+            $table->foreignId('staff_id')->references('id')->on('staff')->onDelete('cascade');
             $table->timestamps();
         });
     }

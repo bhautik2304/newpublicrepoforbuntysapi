@@ -15,6 +15,14 @@ class CreateOffersTable extends Migration
     {
         Schema::create('offers', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->date('valid_date');
+            $table->boolean('status');
+            $table->boolean('reddem')->default(false);
+            $table->string('discount')->default(null);
+            $table->string('amount')->default(null);
+            $table->string('uptoamount');
+            $table->string('costomercategury');
             $table->timestamps();
         });
     }

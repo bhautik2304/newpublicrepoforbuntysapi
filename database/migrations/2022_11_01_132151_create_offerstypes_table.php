@@ -15,7 +15,8 @@ class CreateOfferstypesTable extends Migration
     {
         Schema::create('offerstypes', function (Blueprint $table) {
             $table->id();
-            // $table->
+            $table->string('name');
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

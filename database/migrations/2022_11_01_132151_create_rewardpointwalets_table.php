@@ -15,6 +15,9 @@ class CreateRewardpointwaletsTable extends Migration
     {
         Schema::create('rewardpointwalets', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('costomer_id')->references('id')->on('costumers')->onDelete('cascade');
+            $table->foreignId('stores_id')->references('id')->on('stores')->onDelete('cascade');
+            $table->string('totale');
             $table->timestamps();
         });
     }
