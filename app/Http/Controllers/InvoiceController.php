@@ -12,6 +12,6 @@ class InvoiceController extends Controller
     {
         # code...
         $invoice=new invoice;
-        $invoice->=
+        // $invoice->=
     }
 }
