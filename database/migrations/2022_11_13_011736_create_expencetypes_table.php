@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNextappoitmenttsTable extends Migration
+class CreateExpencetypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreateNextappoitmenttsTable extends Migration
      */
     public function up()
     {
-        Schema::create('nextappoitmentts', function (Blueprint $table) {
+        Schema::create('expencetypes', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreateNextappoitmenttsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nextappoitmentts');
+        Schema::dropIfExists('expencetypes');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateExpencetypesTable extends Migration
+class CreateTaskupdatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class CreateExpencetypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('expencetypes', function (Blueprint $table) {
+        Schema::create('taskupdates', function (Blueprint $table) {
             $table->id();
+            $table->text('task_msg')->nullable(true);
+            $table->text('task_desciption')->nullable(true);
+            $table->boolean('status')->nullable(true);
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ class CreateExpencetypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('expencetypes');
+        Schema::dropIfExists('taskupdates');
     }
 }

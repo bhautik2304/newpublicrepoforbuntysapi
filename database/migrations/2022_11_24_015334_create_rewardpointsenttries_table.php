@@ -15,6 +15,9 @@ class CreateRewardpointsenttriesTable extends Migration
     {
         Schema::create('rewardpointsenttries', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('costomer_id')->references('id')->on('costumers')->onDelete('cascade');
+            $table->string('amount');
+            $table->boolean('entry_type')->default(false);
             $table->timestamps();
         });
     }

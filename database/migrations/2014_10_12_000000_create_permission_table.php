@@ -15,7 +15,9 @@ class CreatePermissionTable extends Migration
     {
         Schema::create('permissions', function (Blueprint $table) {
             $table->id();
-            $table->string('permission')->nullable(true);
+            $table->foreignId('roletype')->references('id')->on('roletypes')->onDelete('cascade');            $table->string('permission_type')->nullable(true);
+            $table->string('permission')->default(true);
+            $table->boolean('permission_status')->default(true);
             $table->timestamps();
         });
     }

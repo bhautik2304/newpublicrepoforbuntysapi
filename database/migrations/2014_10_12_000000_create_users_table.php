@@ -16,6 +16,7 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->foreignId('storeid')->references('id')->on('stores')->onDelete('cascade');
+            $table->foreignId('role_id')->references('id')->on('roletypes')->onDelete('cascade');
             $table->string('name');
             $table->text('img')->nullable();
             $table->text('designation')->nullable();

@@ -15,6 +15,16 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('store_id')->references('id')->on('stores')->onDelete('cascade');
+            $table->foreignId('product_categury_id')->references('id')->on('producttypes')->onDelete('cascade');
+            $table->string('name')->nullable(true);
+            $table->string('price')->nullable(true);
+            $table->text('uuid')->nullable(true);
+            $table->boolean('status')->default(true);
+            $table->string('discription')->nullable(true);
+            $table->string('expiry_date')->nullable(true);
+            $table->string('menue_date')->nullable(true);
+            $table->string('qty')->nullable(true);
             $table->timestamps();
         });
     }

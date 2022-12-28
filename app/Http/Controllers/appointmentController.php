@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\appointment;
+use App\Models\service;
 use Illuminate\Http\Request;
-
 class appointmentController extends Controller
 {
     /**
@@ -15,7 +15,7 @@ class appointmentController extends Controller
     public function index()
     {
         //
-        return response(['appoitment'=>appointment::all()],200);
+        return response(['appoitment' => appointment::all()], 200);
     }
 
     /**
@@ -34,14 +34,33 @@ class appointmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req)
     {
         //
-        $appoitment=new appointment;
-        $req->=;
+        $appoitment = new appointment;
+        $appoitment->storeid = $req->storeid;
+        $appoitment->costomer_id = $req->costomer_id;
+        $appoitment->staffid = $req->staffid;
+        $appoitment->serviceid = $req->serviceid;
+        $appoitment->appoitment_date = $req->appoitment_date;
+        $appoitment->appoitment_time = $req->appoitment_time;
+        $appoitment->appoitment_end_time = $appoitment->getAppoitmentEndTime($req->serviceid,$req->appoitment_time);
+        $appoitment->save();
+
+
+        //send sms to costomer
+        $appoitment->bookAppoitmentSms($req->appoitment_date,$req->appoitment_time,$req->storeid,$req->costomer_id);
+
+        if ($req->nextappoitment) {
+            # code...
+           $this->bookNextAppoitment( $req);
+        }
+
+        return response(["msg"=>"created","appoitment"=>$appoitment],200);
+        //
     }
 
-    public function storeAppoitment($req,$date)
+    public function storeAppoitment($req, $date)
     {
         //
 
@@ -90,5 +109,19 @@ class appointmentController extends Controller
     public function destroy(appointment $appointment)
     {
         //
+    }
+
+    public function bookNextAppoitment($data)
+    {
+        # code...
+        $appoitment = new appointment;
+        $appoitment->storeid = $data->storeid;
+        $appoitment->costomer_id = $data->costomer_id;
+        $appoitment->staffid = $data->staffid;
+        $appoitment->serviceid = $data->serviceid;
+        $appoitment->appoitment_date = $appoitment->getAppoitmentDays($data->serviceid,$data->appoitment_date);
+        $appoitment->appoitment_time = $data->appoitment_time;
+        $appoitment->appoitment_end_time = $appoitment->getAppoitmentEndTime($data->serviceid,$data->appoitment_time);
+        return $appoitment->save();
     }
 }
