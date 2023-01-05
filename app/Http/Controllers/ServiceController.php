@@ -45,11 +45,13 @@ class ServiceController extends Controller
         $table->name=$req->name;
         $table->price=$req->price;
         $table->minprice=$req->minprice;
+        $table->service_duration=$req->service_duration;
+        $table->service_time=$req->service_time;
         $table->save();
         // Broadcast::event
         event(new storeUpdate('Update Store'));
         // Event::fire();
-        return response(["msg"=>"Service $req->name Created Succesfully"],200);
+        return response(["msg"=>"Service $req->name Created Succesfully",'code'=>1],200);
     }
 
     /**
@@ -81,9 +83,20 @@ class ServiceController extends Controller
      * @param  \App\Models\service  $service
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $req, service $service)
+    public function update(Request $req ,$id)
     {
         //
+        $service=service::find($id)->first();
+        $service->update( [
+            'servicetypeid' => $req->servicetypeid,
+            'name' => $req->name,
+            'price' => $req->price,
+            'minprice' => $req->minprice,
+            'service_duration' => $req->service_duration,
+            'service_time' => $req->service_time,
+        ]);
+
+        return response(["msg"=>"updated $service->name",'code'=>2],200);
     }
 
     /**
@@ -92,10 +105,11 @@ class ServiceController extends Controller
      * @param  \App\Models\service  $service
      * @return \Illuminate\Http\Response
      */
-    public function destroy(service $service,$id)
+    public function destroy(service $services,$id)
     {
         //
-        $service->find($id)->delete();
-        return response(["msg"=>"delated Service"],200);
+        $service = service::find($id)->first();
+        $service->delete();
+        return response(["msg"=>"delate Service $service->name",'code'=>0],200);
     }
 }

@@ -29,7 +29,8 @@ Route::apiResource('/stuff', StaffController::class);
 Route::post('/createinvoice', [InvoiceController::class,'invoiceCreate']);
 
 Route::apiResource('/Servicetype', ServicetypeController::class);
-Route::apiResource('/Service', ServiceController::class);
+Route::resource('/Service', ServiceController::class);
+Route::put('/Service/{id}', [ServiceController::class,'update']);
 
 Route::post('/costumertype', [CostumerController::class, 'costomertypes']);
 Route::get('/costumertype', [CostumerController::class, 'costomer']);

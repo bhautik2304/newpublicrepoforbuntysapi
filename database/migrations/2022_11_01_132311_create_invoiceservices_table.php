@@ -15,7 +15,7 @@ class CreateInvoiceservicesTable extends Migration
     {
         Schema::create('invoiceservices', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('store_id')->references('id')->on('invoices')->onDelete('stores');
+            $table->foreignId('store_id')->references('id')->on('invoices')->onDelete('cascade');
             $table->foreignId('invoices_id')->references('id')->on('invoices')->onDelete('cascade');
             $table->foreignId('costomer_id')->references('id')->on('costumers')->onDelete('cascade');
             $table->foreignId('serice_id')->references('id')->on('services')->onDelete('cascade');

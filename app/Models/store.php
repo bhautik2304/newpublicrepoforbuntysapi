@@ -16,7 +16,7 @@ class store extends Model
     protected static function booted()
     {
         static::addGlobalScope('costomer', function (Builder $builder) {
-            $builder->with(['costomer','appoitment','users','invoices','stuff']);
+           return $builder->with(['costomer','appoitment','users','invoices','stuff']);
         });
     }
     public function costomer()

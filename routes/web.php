@@ -1,7 +1,7 @@
 <?php
 
 use App\Events\storeUpdate;
-use App\Http\Controllers\{appointmentController,pagecontroller};
+use App\Http\Controllers\{appointmentController, pagecontroller};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,4 +46,9 @@ use Illuminate\Support\Facades\Route;
 
 //     event(new storeUpdate('new msg'));
 // });
-Route::get('/',[pagecontroller::class,'dashbord']);
+Route::get('/', [pagecontroller::class, 'dashbord']);
+Route::get('/test', function () {
+    $time = date('d-m-Y h:i');
+    $time = date('d-m-Y h:i', strtotime($time . '+ 1 months'));
+    echo$time;
+});

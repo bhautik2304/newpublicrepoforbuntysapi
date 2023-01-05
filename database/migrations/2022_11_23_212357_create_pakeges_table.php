@@ -15,11 +15,11 @@ class CreatePakegesTable extends Migration
     {
         Schema::create('pakeges', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('store_id')->references('id')->on('invoices')->onDelete('stores')->nullable(true);
-            $table->foreignId('pkg_id')->references('id')->on('invoices')->onDelete('cascade')->nullable(true);
-            $table->foreignId('serice_id')->references('id')->on('services')->onDelete('cascade')->nullable(true);
-            $table->foreignId('costomer_id')->references('id')->on('costumers')->onDelete('cascade')->nullable(true);
-            $table->foreignId('staff_id')->references('id')->on('staff')->onDelete('cascade')->nullable(true);
+            $table->foreignId('store_id')->references('id')->on('invoices')->onDelete('cascade');
+            $table->foreignId('pkg_id')->references('id')->on('invoices')->onDelete('cascade');
+            $table->foreignId('serice_id')->references('id')->on('services')->onDelete('cascade');
+            $table->foreignId('costomer_id')->references('id')->on('costumers')->onDelete('cascade');
+            $table->foreignId('staff_id')->references('id')->on('staff')->onDelete('cascade');
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

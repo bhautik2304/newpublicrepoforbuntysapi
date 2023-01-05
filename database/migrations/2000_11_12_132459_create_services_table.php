@@ -19,6 +19,8 @@ class CreateServicesTable extends Migration
             $table->string('name', 100)->nullable()->default('text');
             $table->string('price', 100)->nullable()->default(0);
             $table->string('minprice', 100)->nullable()->default(0);
+            $table->string('service_time', 100)->nullable();
+            $table->string('service_duration', 100)->nullable();
             $table->timestamps();
         });
     }
