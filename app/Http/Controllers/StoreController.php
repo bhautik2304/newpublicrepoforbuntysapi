@@ -13,9 +13,10 @@ class StoreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $req)
     {
         //
+        // dd($req->header('store'));
         return response(["Store"=>store::all()],200);
     }
 

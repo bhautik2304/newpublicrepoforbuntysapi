@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class invoice extends Model
 {
     use HasFactory;
+
+    public function store(){
+        return $this->belongsTo(store::class,'store_id','id');
+    }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInvoiceproductsTable extends Migration
+class CreatePakegsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ class CreateInvoiceproductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('invoiceproducts', function (Blueprint $table) {
+        Schema::create('pakegs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('invoice_id')->references('id')->on('invoices')->onDelete('cascade');
             $table->foreignId('store_id')->references('id')->on('stores')->onDelete('cascade');
+            $table->foreignId('invoice_id')->references('id')->on('invoices')->onDelete('cascade');
             $table->foreignId('costomer_id')->references('id')->on('costumers')->onDelete('cascade');
-            $table->foreignId('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreignId('staff_id')->references('id')->on('staff')->onDelete('cascade');
-            $table->string('totale')->nullable(true);
-            $table->string('discount')->nullable(true);
-            $table->string('staffcomisan')->nullable(true);
+            // $table->foreignId('stuff_id')->references('id')->on('staff')->onDelete('cascade');
+            $table->bigInteger('serviceQty');
             $table->timestamps();
         });
     }
@@ -34,6 +32,6 @@ class CreateInvoiceproductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('invoiceproducts');
+        Schema::dropIfExists('pakegs');
     }
 }

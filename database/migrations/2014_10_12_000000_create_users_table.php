@@ -17,15 +17,10 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->foreignId('storeid')->references('id')->on('stores')->onDelete('cascade');
             $table->foreignId('role_id')->references('id')->on('roletypes')->onDelete('cascade');
+            $table->foreignId('staff_id')->references('id')->on('staff')->onDelete('cascade')->nullable();
             $table->string('name');
-            $table->text('img')->nullable();
-            $table->text('designation')->nullable();
-            $table->text('address')->nullable();
-            $table->text('city')->nullable();
             $table->string('email')->unique()->nullable();
             $table->string('mobaile')->unique()->nullable();
-            $table->string('whatsapp')->nullable();
-            $table->timestamp('email_verified_at')->nullable();
             $table->text('password');
             $table->rememberToken();
             $table->timestamps();

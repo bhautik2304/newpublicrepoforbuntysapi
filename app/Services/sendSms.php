@@ -3,6 +3,8 @@ namespace App\Services;
 
 use App\Models\costumer;
 use App\Models\store;
+use App\Models\taskupdate;
+
 trait sendSms
 {
     public static function bookAppoitmentSms($date, $time, $storeId, $costomerId)
@@ -32,7 +34,9 @@ trait sendSms
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($ch);
         curl_close($ch);
-
+        // $task = new taskupdate;
+        // $task->task_msg = $response;
+        // $task->save();
         // Process your response here
     }
 
@@ -63,7 +67,9 @@ trait sendSms
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($ch);
         curl_close($ch);
-
+        // $task = new taskupdate;
+        // $task->task_msg = $response;
+        // $task->save();
         // Process your response here
     }
 }

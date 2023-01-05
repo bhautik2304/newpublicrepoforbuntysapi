@@ -7,15 +7,17 @@ use App\Models\service;
 use Illuminate\Http\Request;
 class appointmentController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $req)
     {
         //
-        return response(['appoitment' => appointment::all()], 200);
+        // dd($req->date);
+        return response(['appoitment' => appointment::storeAppointment($req->header('UserType'),$req->header('Store'),$req->date)], 200);
     }
 
     /**
@@ -37,8 +39,10 @@ class appointmentController extends Controller
     public function store(Request $req)
     {
         //
+        $store = $req->header('Store');
+
         $appoitment = new appointment;
-        $appoitment->storeid = $req->storeid;
+        $appoitment->storeid = $store;
         $appoitment->costomer_id = $req->costomer_id;
         $appoitment->staffid = $req->staffid;
         $appoitment->serviceid = $req->serviceid;
@@ -49,11 +53,11 @@ class appointmentController extends Controller
 
 
         //send sms to costomer
-        $appoitment->bookAppoitmentSms($req->appoitment_date,$req->appoitment_time,$req->storeid,$req->costomer_id);
+        $appoitment->bookAppoitmentSms($req->appoitment_date,$req->appoitment_time,$store,$req->costomer_id);
 
         if ($req->nextappoitment) {
             # code...
-           $this->bookNextAppoitment( $req);
+           $this->bookNextAppoitment( $req,$store);
         }
 
         return response(["msg"=>"created","appoitment"=>$appoitment],200);
@@ -111,11 +115,11 @@ class appointmentController extends Controller
         //
     }
 
-    public function bookNextAppoitment($data)
+    public function bookNextAppoitment($data,$store)
     {
         # code...
         $appoitment = new appointment;
-        $appoitment->storeid = $data->storeid;
+        $appoitment->storeid = $store;
         $appoitment->costomer_id = $data->costomer_id;
         $appoitment->staffid = $data->staffid;
         $appoitment->serviceid = $data->serviceid;
