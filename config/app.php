@@ -67,7 +67,11 @@ return [
     |
     */
 
+<<<<<<< HEAD
     'timezone' => 'Asia/Kolkata',
+=======
+    'timezone' => 'Asia/Calcutta',
+>>>>>>> bf072dd6d817922f849a6a1cf6083b3d8ef899df
 
     /*
     |--------------------------------------------------------------------------
@@ -174,7 +178,6 @@ return [
         App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
     ],
 
     /*

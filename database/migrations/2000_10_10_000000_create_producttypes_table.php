@@ -16,7 +16,11 @@ class CreateProducttypesTable extends Migration
         Schema::create('producttypes', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+<<<<<<< HEAD
             $table->boolean('status')->nullable()->default(true);
+=======
+            $table->boolean('status')->default(true);
+>>>>>>> bf072dd6d817922f849a6a1cf6083b3d8ef899df
             $table->timestamps();
         });
     }

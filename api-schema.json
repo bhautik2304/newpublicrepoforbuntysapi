@@ -1,0 +1,70 @@
+[
+    // store-schema
+    {
+        "store_name": "",
+        "store_user_name": "",
+        "email": "",
+        "phone": "",
+        "password": "",
+        "address": "",
+        "city": "",
+        "area": "",
+        "pin": "",
+        "insta_link": "",
+        "google_map_link": "",
+        "facebook_link": "",
+        "youtube_link": "",
+        "open_time": "",
+        "close_time": ""
+    },
+    // appoitment
+    {
+        "storeid": "1",
+        "costomer_id": "1",
+        "staffid": "2",
+        "serviceid": 2,
+        "appoitment_date": "2022-12-27",
+        "appoitment_time": "2:00",
+        "nextappoitment": true
+    }
+    // costomer
+    {
+        "storeid": 1,
+        "name": "bhautik",
+        "lastname": "bhautik",
+        "img": "bhautik",
+        "city": "bhautik",
+        "email": "bhautik",
+        "mobaile": "bhautik",
+        "whatsapp": "bhautik",
+        "DOB": "01-01-2000",
+        "Anniversary": "bhautik",
+        "email_notyfication_status": 1,
+        "mobaile_notyfication_status": 1,
+        "whatsapp_notyfication_status": 1,
+        "costomer_notes": "bhautik",
+        "address": "bhautik",
+        "gender": 1,
+        "promo_sms": 1
+    },
+    // invoice
+    {
+        "store_id": "",
+        "costomer_id": "",
+        "invoicetypes_id": "",
+        "invoice_no": "",
+        "totale": "",
+        "discount_is": "",
+        "discounted_amount": "",
+        "discount": "",
+        "reward_point_readeem": "",
+        "reward_point_amount": "",
+        "reward_point": "",
+        "vaocher": "",
+        "vaocher_code": "",
+        "vaocher_amount": "",
+        "gst": "",
+        "gst_amount": "",
+        "paid": ""
+    }
+]

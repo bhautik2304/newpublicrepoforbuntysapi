@@ -2,8 +2,10 @@
 
 namespace App\Console;
 
+use App\Jobs\AppoitmentReminderjob;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Models\appointment;
 
 class Kernel extends ConsoleKernel
 {
@@ -15,7 +17,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('artisan:reminder')->everyMinute()->between('10:00','22:00');
+        // $schedule->job(new AppoitmentReminderjob($appoitment->costomer_id,$appoitment))->everyMinute();
+
     }
 
     /**

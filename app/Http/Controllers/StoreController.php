@@ -13,9 +13,10 @@ class StoreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $req)
     {
         //
+        // dd($req->header('store'));
         return response(["Store"=>store::all()],200);
     }
 
@@ -88,9 +89,31 @@ class StoreController extends Controller
      * @param  \App\Models\store  $store
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $req, store $store)
+    public function update(Request $req,$id)
     {
         //
+        $store = store::where('id', $id)->first();
+        $action=$store->update([
+            'name'=>$req->name,
+            'avatar'=>$req->avatar,
+            'email'=>$req->email,
+            'mobaile'=>$req->mobaile,
+            'password'=>Hash::make($req->password),
+            'opentime'=>$req->opentime,
+            'closetime'=>$req->closetime,
+            'address'=>$req->address,
+            'pin'=>$req->pin,
+            'city'=>$req->city,
+            'map'=>$req->map
+        ]);
+
+        if (!$action) {
+            # code...
+            return response(["msg"=>"oops Some Error accord","code"=>422],200);
+        }
+
+        return response(["msg"=>"Your Changes Successfully Done","Store"=>$store,"code"=>200],200);
+
     }
 
     /**

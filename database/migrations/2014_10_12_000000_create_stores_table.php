@@ -17,8 +17,10 @@ class CreateStoresTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('avatar')->nullable();
+            $table->text('logo')->nullable();
             $table->string('email')->nullable();
             $table->string('mobaile')->nullable();
+            $table->string('whatsapp_no')->nullable();
             $table->text('password')->nullable();
             $table->string('opentime')->nullable();
             $table->string('closetime')->nullable();
@@ -26,7 +28,10 @@ class CreateStoresTable extends Migration
             $table->string('pin')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
-            $table->string('map')->nullable();
+            $table->string('insta_link')->nullable();
+            $table->string('facebook_link')->nullable();
+            $table->string('gmail_id')->nullable();
+            $table->text('map')->nullable();
             $table->string('lat')->nullable();
             $table->string('long')->nullable();
             $table->timestamps();

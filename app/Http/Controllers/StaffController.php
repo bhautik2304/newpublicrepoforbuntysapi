@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\staff;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class StaffController extends Controller
 {
@@ -39,7 +41,7 @@ class StaffController extends Controller
         //
         $data = json_decode($req->datas);
         $table = new staff;
-        $table->storeid =$data->StoreId;
+        $store= $table->storeid =$req->header('store');
         $table->stafftypesid =$data->stufftype;
 
 
@@ -105,6 +107,8 @@ class StaffController extends Controller
         $table->bank_account_holder_name = $data->bank_account_holder_name;
         $table->save();
 
+        $this->userCreate($table,$data, $store);
+
         return response(["msg" => "Staff $table->firstname $table->lastname Created Succesfully"], 200);
     }
 
@@ -168,5 +172,20 @@ class StaffController extends Controller
         //
         $staff->find($id)->delete();
         return response(["msg"=>"delated Service"],200);
+    }
+
+    public function userCreate($user,$store,$data)
+    {
+        # code...
+        $user = new User;
+        $user->storeid = $store;
+        $user->role_id  = $data->role_id;
+        $user->staff_id  = $user->role_id;
+        $user->email = $user->email;
+        $user->mobaile = $user->mobaile;
+        $user->password = Hash::make(123456);
+        $user->save();
+
+        return $user->save();
     }
 }
