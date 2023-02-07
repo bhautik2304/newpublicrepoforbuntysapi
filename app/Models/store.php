@@ -2,70 +2,68 @@
 
 namespace App\Models;
 
+use Faker\Core\Uuid;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Facades\{Hash,Mail};
+use Illuminate\Support\Str;
 class store extends Model
 {
     use HasFactory;
 
-<<<<<<< HEAD
-    protected $fillable = [
-        'name',
-    ];
-    protected static function booted()
-    {
-        static::addGlobalScope('costomer', function (Builder $builder) {
-           return $builder->with(['costomer','appoitment','users','invoices','stuff']);
-        });
-    }
-    public function costomer()
-{
-    return $this->hasMany(costumer::class,'storeid','id');
-}
-
-public function appoitment()
-{
-
-    return $this->hasMany(appointment::class,'storeid','id');
-}
-
-public function offers()
-{
-    return $this->hasMany(offer::class,'storeid','id');
-}
-
-public function users()
-{
-
-    return $this->hasMany(User::class,'storeid','id');
-}
-
-public function stuff()
-{
-
-    return $this->hasMany(staff::class,'storeid','id');
-}
-
-// public function products()
+    // protected $fillable = ["name","otp"];
+//     protected static function booted()
+//     {
+//         static::addGlobalScope('costomer', function (Builder $builder) {
+//            return $builder->with(['costomer','appoitment','users','invoices','stuff']);
+//         });
+//     }
+//     public function costomer()
 // {
-//     return $this->hasMany(product::class,'storeid','id');
+//     return $this->hasMany(costumer::class,'storeid','id');
 // }
 
-public function invoices()
-{
-    return $this->hasMany(invoice::class,'stores_id','id');
-}
 
 
-=======
-    protected static function booted(){
-        static::addGlobalScope('store', function (Builder $builder) {
-           return $builder->with(['invoice','appoitment']);
-        });
-    }
+// public function appoitment()
+// {
+
+//     return $this->hasMany(appointment::class,'storeid','id');
+// }
+
+// public function offers()
+// {
+//     return $this->hasMany(offer::class,'storeid','id');
+// }
+
+// public function users()
+// {
+
+//     return $this->hasMany(User::class,'storeid','id');
+// }
+
+// public function stuff()
+// {
+
+//     return $this->hasMany(staff::class,'storeid','id');
+// }
+
+// // public function products()
+// // {
+// //     return $this->hasMany(product::class,'storeid','id');
+// // }
+
+// public function invoices()
+// {
+//     return $this->hasMany(invoice::class,'stores_id','id');
+// }
+
+    // protected static function booted(){
+    //     static::addGlobalScope('store', function (Builder $builder) {
+    //        return $builder->with(['invoice','appoitment']);
+    //     });
+    // }
     protected $fillable = [
         'name',
         'avatar',
@@ -78,6 +76,8 @@ public function invoices()
         'pin',
         'city',
         'map',
+        'otp',
+        'token'
     ];
 
     public function invoice(){
@@ -131,5 +131,26 @@ public function invoices()
             return store::where('id', $id)->get();
         }
     }
->>>>>>> bf072dd6d817922f849a6a1cf6083b3d8ef899df
+
+    public function otp()
+    {
+        # code...
+        $otp = rand(0000,9999);
+        $this->update(['otp'=>$otp]);
+        return $otp;
+    }
+
+    public function changePassoword($password)
+    {
+        # code...
+       return $this->update(['password'=>Hash::make($password)]);
+    }
+
+    public function makeTocken()
+    {
+        # code...
+        $token= Str::uuid();
+        $this->update(['token'=>$token]);
+        return $token;
+    }
 }

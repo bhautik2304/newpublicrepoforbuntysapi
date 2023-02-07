@@ -16,15 +16,22 @@ class CreateCostumersTable extends Migration
         Schema::create('costumers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('storeid')->references('id')->on('stores')->onDelete('cascade');
-            $table->foreignId('costomertypeid')->references('id')->on('costumertypes')->onDelete('cascade')->default(1);
+            $table->foreignId('costocateguryid')->references('id')->on('costumertypes')->onDelete('cascade')->default(1);
+            $table->enum('costomer_categury',['hair wig','hair extention','service','all'])->nullable();
+            $table->enum('costomer_type',['walking','inquiry','Reguler'])->nullable();
             $table->string('name');
             $table->string('last_name')->nullable(true);
             $table->text('img')->nullable(true);
             $table->text('city')->nullable(true);
-            $table->string('email')->unique()->nullable(true);
-            $table->string('mobaile')->unique()->nullable(true);
+            // $table->string('email')->unique()->nullable(true);
+            // $table->string('mobaile')->unique()->nullable(true);
+            $table->string('email')->nullable(true);
+            $table->string('mobaile')->nullable(true);
             $table->string('whatsapp')->nullable(true);
             $table->boolean('gender')->default(false);
+            $table->text('divice_id')->nullable();
+            $table->text('password')->nullable();
+            $table->string('otp')->nullable();
             $table->date('DOB')->nullable(true)->default(null);
             $table->date('Anniversary')->nullable(true)->default(null);
             $table->timestamp('email_verified_at')->nullable(true);

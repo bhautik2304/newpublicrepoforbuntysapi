@@ -39,21 +39,23 @@ class appointmentController extends Controller
     public function store(Request $req)
     {
         //
-        $store = $req->header('Store');
+        $time=$this->createDate($req->start);
 
+        $store = $req->header('Store');
+        // return $store;
         $appoitment = new appointment;
         $appoitment->storeid = $store;
-        $appoitment->costomer_id = $req->costomer_id;
-        $appoitment->staffid = $req->staffid;
-        $appoitment->serviceid = $req->serviceid;
-        $appoitment->appoitment_date = $req->appoitment_date;
-        $appoitment->appoitment_time = $req->appoitment_time;
-        $appoitment->appoitment_end_time = $appoitment->getAppoitmentEndTime($req->serviceid,$req->appoitment_time);
+        $appoitment->costomer_id = $req->costomer;
+        $appoitment->staffid = $req->satffId;
+        $appoitment->serviceid = $req->service;
+        $appoitment->strict = $req->strict;
+        $appoitment->appoitment_date = $time['date'];
+        $appoitment->appoitment_time =$time['time'];
+        $appoitment->appoitment_end_time = $appoitment->getAppoitmentEndTime($req->service,$time['time']);
         $appoitment->save();
 
-
         //send sms to costomer
-        $appoitment->bookAppoitmentSms($req->appoitment_date,$req->appoitment_time,$store,$req->costomer_id);
+        $appoitment->bookAppoitmentSms($time['date'],$time['time'],$store,$req->costomer);
 
         if ($req->nextappoitment) {
             # code...
@@ -62,6 +64,16 @@ class appointmentController extends Controller
 
         return response(["msg"=>"created","appoitment"=>$appoitment],200);
         //
+    }
+
+    public function createDate($date)
+    {
+        date_default_timezone_set("Asia/Calcutta");
+        # code...
+        return [
+            "date"=> date("Y-m-d", strtotime($date)),
+            "time"=> date("H:i:s", strtotime($date)),
+        ];
     }
 
     public function storeAppoitment($req, $date)
@@ -99,9 +111,17 @@ class appointmentController extends Controller
      * @param  \App\Models\appointment  $appointment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, appointment $appointment)
+    public function update(Request $req, appointment $appointment)
     {
         //
+        $appointment->find($req->appoitmentId)->update([
+            "staffid"=>$req->staffid,
+            "appoitment_date"=>$req->appoitment_date,
+            "appoitment_time"=>$req->appoitment_time,
+            "appoitment_end_time"=>$req->appoitment_end_time,
+        ]);
+
+        return response(["msg"=>"appointment updated","code"=>1],200);
     }
 
     /**

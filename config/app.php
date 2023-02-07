@@ -1,5 +1,4 @@
 <?php
-
 return [
 
     /*
@@ -67,12 +66,7 @@ return [
     |
     */
 
-<<<<<<< HEAD
-    'timezone' => 'Asia/Kolkata',
-=======
     'timezone' => 'Asia/Calcutta',
->>>>>>> bf072dd6d817922f849a6a1cf6083b3d8ef899df
-
     /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration
@@ -171,13 +165,14 @@ return [
          */
 
         /*
-         * Application Service Providers...
-         */
+        * Application Service Providers...
+        */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\smsService::class,
     ],
 
     /*
@@ -232,7 +227,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'Sms'=>App\Services\SmsServiceProvider::class
     ],
 
 ];

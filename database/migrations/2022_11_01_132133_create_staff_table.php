@@ -31,6 +31,8 @@ class CreateStaffTable extends Migration
             $table->boolean('mobaile_veryfy')->default(true);
             $table->boolean('whatsapp_mobaile_veryfy')->default(true);
 
+            $table->boolean('leave')->default(false);
+
             $table->date('birthday')->nullable();
             $table->date('annyversy_day')->nullable();
 

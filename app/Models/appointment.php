@@ -13,6 +13,8 @@ class appointment extends Model
 {
     use HasFactory,getTimeDate,sendSms;
 
+    protected $fillable=['costomer_id','staffid','serviceid','appoitment_date','appoitment_time','appoitment_end_time'];
+
     public function store()
     {
         # code...
@@ -25,7 +27,11 @@ class appointment extends Model
             return $this->all();
         }
 
-        return $query->where([['storeid', $storeId],['appoitment_date',$date ? $date : date('Y-m-d')]])->get();
+        return $query->where([['storeid', $storeId]])->get();
     }
-
+    public function costomer()
+    {
+        # code...
+        return $this->belongsTo(store::class,'costomer_id');
+    }
 }

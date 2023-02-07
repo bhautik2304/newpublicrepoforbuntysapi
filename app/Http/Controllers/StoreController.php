@@ -46,7 +46,7 @@ class StoreController extends Controller
         $store->email=$req->email;
         $store->mobaile=$req->mobaile;
         // $store->whatsapp=$req->mobaile;
-        $store->password=Hash::make($req->password);
+        $store->password=Hash::make($req->mobaile);
         $store->opentime=$req->opentime;
         $store->closetime=$req->closetime;
         $store->address=$req->address;

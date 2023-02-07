@@ -16,16 +16,14 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->foreignId('storeid')->references('id')->on('stores')->onDelete('cascade');
-<<<<<<< HEAD
-            // $table->foreignId('staffid')->references('id')->on('staff')->onDelete('cascade');
-=======
             $table->foreignId('role_id')->references('id')->on('roletypes')->onDelete('cascade');
-            $table->foreignId('staff_id')->references('id')->on('staff')->onDelete('cascade')->nullable();
->>>>>>> bf072dd6d817922f849a6a1cf6083b3d8ef899df
             $table->string('name');
             $table->string('email')->unique()->nullable();
             $table->string('mobaile')->unique()->nullable();
-            $table->text('password');
+            $table->text('divice_id')->nullable();
+            $table->text('password')->nullable();
+            $table->string('otp')->nullable();
+            $table->text('token')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

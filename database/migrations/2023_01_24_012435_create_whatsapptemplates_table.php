@@ -3,9 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use phpDocumentor\Reflection\Types\Boolean;
 
-class CreateInvoicetypesTable extends Migration
+class CreateWhatsapptemplatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +13,12 @@ class CreateInvoicetypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('invoicetypes', function (Blueprint $table) {
+        Schema::create('whatsapptemplates', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('template_id');
+            $table->string('template_header');
+            $table->string('template_name');
+            $table->string('template_msg');
             $table->boolean('status')->default(true);
             $table->timestamps();
         });
@@ -29,6 +31,6 @@ class CreateInvoicetypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('invoicetypes');
+        Schema::dropIfExists('whatsapptemplates');
     }
 }

@@ -34,6 +34,9 @@ class CreateStoresTable extends Migration
             $table->text('map')->nullable();
             $table->string('lat')->nullable();
             $table->string('long')->nullable();
+            $table->text('divice_id')->nullable();
+            $table->text('token')->nullable();
+            $table->string('otp')->nullable();
             $table->timestamps();
         });
     }

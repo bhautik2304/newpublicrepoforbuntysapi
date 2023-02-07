@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class pakege extends Model
 {
     use HasFactory;
+
+    public function costomer()
+    {
+        # code...
+        return $this->belongsTo(store::class,'costomer_id');
+    }
 }

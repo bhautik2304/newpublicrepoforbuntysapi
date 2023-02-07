@@ -17,6 +17,7 @@ class CreateRewardpointenturiesTable extends Migration
             $table->id();
             $table->foreignId('costomer_id')->references('id')->on('costumers')->onDelete('cascade');
             $table->foreignId('stores_id')->references('id')->on('stores')->onDelete('cascade');
+            $table->unsignedBigInteger('invoice_id')->nullable();
             $table->boolean('types');
             $table->string('points');
             $table->timestamps();

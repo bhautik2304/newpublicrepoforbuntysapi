@@ -2,21 +2,17 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
 use App\Models\{invoice,costumer, invoiceproduct, invoiceservices,pakegeservice,pakege};
 // use App\Models\;
-=======
-use App\Models\invoice;
-use App\Models\invoiceservices;
+// use App\Models\invoice;
+// use App\Models\invoiceservices;
 use App\Models\staff;
->>>>>>> bf072dd6d817922f849a6a1cf6083b3d8ef899df
 use Illuminate\Http\Request;
 // use PhpParser\JsonDecoder;
 
 class InvoiceController extends Controller
 {
-    //
-<<<<<<< HEAD
+
     public function invoiceCreate(Request $req)
     {
         # code...
@@ -94,7 +90,7 @@ public function pkgInvoice($req)
 
 
 }
-=======
+
     public function invoiceGenrater(Request $req)
     {
         # code...
@@ -148,11 +144,10 @@ public function pkgInvoice($req)
     {
         # code...
         $date = date('Y-m-d');
-        $data=invoice::where('invoiceDate',$date)->with('store')->get();
+        $data=invoice::where('created_at','like',"%$date%")->get();
         $count=$data->sum('totale');
         return response(["invoice"=>$data,"totle"=>$count],200);
     }
->>>>>>> bf072dd6d817922f849a6a1cf6083b3d8ef899df
 }
 
 /*

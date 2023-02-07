@@ -23,7 +23,7 @@ class CreateProductsTable extends Migration
             $table->boolean('status')->default(true);
             $table->string('discription')->nullable(true);
             $table->string('expiry_date')->nullable(true);
-            $table->string('menue_date')->nullable(true);
+            $table->string('menu_date')->nullable(true);
             $table->string('qty')->nullable(true);
             $table->timestamps();
         });

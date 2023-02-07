@@ -18,7 +18,7 @@ class CreateCostumertypesTable extends Migration
             $table->string('name', 100)->nullable()->default('text');
             $table->string('minsale', 100)->nullable()->default('0');
             $table->string('maxsale', 100)->nullable()->default('0');
-            $table->boolean('status')->nullable()->default(true);
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

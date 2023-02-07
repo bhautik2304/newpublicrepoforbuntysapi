@@ -41,7 +41,7 @@ class StaffController extends Controller
         //
         $data = json_decode($req->datas);
         $table = new staff;
-        $store= $table->storeid =$req->header('store');
+        $table->storeid =$store = $req->header('store');
         $table->stafftypesid =$data->stufftype;
 
 
@@ -80,15 +80,11 @@ class StaffController extends Controller
         $table->pkg_sale = $data->PkgSale;
 
 
-
-
-
         $table->profile_img = $this->fileStore($req, 'profile_img', 'stuffprofile', );
         $table->addhar_doc_url = $this->fileStore($req, 'adhar_card', 'stuffdoc', );
         $table->pan_doc_url = $this->fileStore($req, 'pancard', 'stuffdoc', );
         $table->drl_doc_url = $this->fileStore($req, 'driving_liences', 'stuffdoc', );
         $table->bank_account_doc = $this->fileStore($req, 'bankstatement', 'stuffdoc', );
-
 
 
         $table->addhar_no = $data->addhar_no;
@@ -112,18 +108,18 @@ class StaffController extends Controller
         return response(["msg" => "Staff $table->firstname $table->lastname Created Succesfully"], 200);
     }
 
-    protected function fileStore(Request $req, $files, $folder)
+
+    // File Store Function
+    protected function fileStore($req, $files, $folder)
     {
         # code...
         if ($req->has($files)) {
-            $file = $req->file($files);
-            $name = $file->getClientOriginalName() . '.' . $file->getClientOriginalExtension();
-            $file->move($folder, $name);
-            return url("$folder/$name");
-        } else {
-
-            return response(["msg" => 'We are NOt Get a file'], 200);
+            return 'We are NOt Get a file';
         }
+        $file = $req->file($files);
+        $name = $file->getClientOriginalName() . '.' . $file->getClientOriginalExtension();
+        $file->move($folder, $name);
+        return url("$folder/$name");
     }
 
 
@@ -179,8 +175,8 @@ class StaffController extends Controller
         # code...
         $user = new User;
         $user->storeid = $store;
-        $user->role_id  = $data->role_id;
-        $user->staff_id  = $user->role_id;
+        $user->role_id  = 1;
+        $user->staff_id  = $user->id;
         $user->email = $user->email;
         $user->mobaile = $user->mobaile;
         $user->password = Hash::make(123456);

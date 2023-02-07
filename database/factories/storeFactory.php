@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 
 class storeFactory extends Factory
 {
@@ -15,7 +16,10 @@ class storeFactory extends Factory
     {
         return [
             //
-            'name'=>$this->faker->name()
+            'name'=>$this->faker->name(),
+            'email'=>$this->faker->email(),
+            'mobaile'=>$this->faker->phoneNumber(),
+            'password'=>Hash::make("1234567890")
         ];
     }
 }

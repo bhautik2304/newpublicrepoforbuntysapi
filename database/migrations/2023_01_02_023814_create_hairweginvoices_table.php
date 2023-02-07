@@ -17,9 +17,6 @@ class CreateHairweginvoicesTable extends Migration
             $table->id();
             $table->foreignId('store_id')->references('id')->on('stores')->onDelete('cascade');
             $table->foreignId('costomer_id')->references('id')->on('costumers')->onDelete('cascade');
-            $table->foreignId('invoicetypes_id')->references('id')->on('invoicetypes')->onDelete('cascade');
-
-            // $table->foreignId('invoicetypes_id')->references('id')->on('invoicetypes')->onDelete('cascade');
 
             $table->string('invoice_no')->nullable(true);
             $table->string('totale')->nullable(true);
