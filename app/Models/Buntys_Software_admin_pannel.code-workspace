@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "../.."
+		},
+		{
+			"path": "../../../../buntys 2.0/buntysaloon"
 		}
 	],
 	"settings": {}

@@ -1,7 +1,7 @@
 @component('mail::message')
-# Introduction
+# Resetpassword OTP
 
-The body of your message.
+Do Not Share otp to Anyone.
 
 @component('mail::panel')
 <center>{{$otp}}</center>

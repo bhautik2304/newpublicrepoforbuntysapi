@@ -1,10 +1,13 @@
 <?php
 
 use App\Http\Controllers\{authcontroller, appointmentController, StafftypeController, StaffController, ServiceController, CostumerController, InvoiceController, RoletypeController, ServicetypeController, StoreController};
+use App\Mail\testmail;
 use App\Models\store;
+use Illuminate\Contracts\Mail\Mailer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,7 +74,6 @@ Route::apiResource('/Service', ServiceController::class);
 
 // Inventury Mange ment Routes
 Route::get('/test', function (Request $req) {
-    //$costomer= costumer::where('id', $id)->first();
-    //return $costomer->sendSms($costomer->name,$costomer->mobaile);
-    // return $req->date ? $req->date : date("Y-m-d") ;
+
+  return  Mail::to($req->email)->send(new testmail(rand(0000,9999)));
 });

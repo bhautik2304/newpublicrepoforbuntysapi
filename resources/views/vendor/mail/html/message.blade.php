@@ -2,7 +2,8 @@
 {{-- Header --}}
 @slot('header')
 @component('mail::header', ['url' => config('app.url')])
-{{ config('app.name') }}
+{{-- {{ config('app.name') }} --}}
+<img src="https://assets.buntyshairstudio.com/buntyslogosqure238x168.png" alt="bunty's Logo" srcset="">
 @endcomponent
 @endslot
 
