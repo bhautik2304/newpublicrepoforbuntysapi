@@ -17,7 +17,7 @@ class InvoiceController extends Controller
     {
         # code...
         $invoice=new invoice();
-        $invoice->stores_id=$req->stores_id;
+        $invoice->stores_id=$req->header('Store');
         $invoice->invoicetypes_id=$req->invoicetypes_id;
         $invoice->costomer_id=$req->costomer_id;
         $invoice->invoice_no=$req->invoice_no;

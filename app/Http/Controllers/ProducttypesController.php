@@ -73,9 +73,13 @@ class ProducttypesController extends Controller
      * @param  \App\Models\producttypes  $producttypes
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $req, producttypes $producttypes)
+    public function update(Request $req, producttypes $producttypes,$id)
     {
         //
+        $pb = $producttypes->find($id);
+        $producttypes->find($id)->update(['name' => $req->name]);
+
+        return response(["msg" => "updated Successfully $pb->name"]);
     }
 
     /**
@@ -84,8 +88,11 @@ class ProducttypesController extends Controller
      * @param  \App\Models\producttypes  $producttypes
      * @return \Illuminate\Http\Response
      */
-    public function destroy(producttypes $producttypes)
+    public function destroy(producttypes $producttypes,$id)
     {
         //
+        $pb = $producttypes->find($id);
+        $producttypes->find($id)->destroy($id);
+        return response(["msg" => "deleted Successfully $pb->name"]);
     }
 }

@@ -18,6 +18,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('artisan:reminder')->everyMinute()->between('10:00','22:00');
+        $schedule->command('queue:work --stop-when-empty')->everyMinute();
         // $schedule->job(new AppoitmentReminderjob($appoitment->costomer_id,$appoitment))->everyMinute();
 
     }

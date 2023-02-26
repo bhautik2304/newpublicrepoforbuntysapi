@@ -21,8 +21,8 @@ class appointment extends Model
         return $this->belongsTo(store::class,'store_id');
     }
 
-    public function scopeStoreAppointment($query,$user,$storeId=null,$date=null){
-        if ($user=="admin") {
+    public function scopeStoreAppointment($query,$user,$storeId=null){
+        if ($user=="masteradmin") {
             # code...
             return $this->all();
         }
@@ -33,5 +33,11 @@ class appointment extends Model
     {
         # code...
         return $this->belongsTo(store::class,'costomer_id');
+    }
+
+    public function appointntmentService()
+    {
+        # code...
+        return $this->hasMany(appointmentservice::class,'appointmentid');
     }
 }

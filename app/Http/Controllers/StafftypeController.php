@@ -73,9 +73,16 @@ class StafftypeController extends Controller
      * @param  \App\Models\stafftype  $stafftype
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $req, stafftype $stafftype)
+    public function update(Request $req, stafftype $stafftype,$id)
     {
         //
+        if(!($req->header('UserType')=='admin')){
+            return response(["msg"=>"You can't Update Staff Categury Data"],200);
+        }
+
+        $st= $stafftype->find($id);
+        $stafftype->find($id)->update(['name'=>$req->name]);
+        return response(["msg" => "Staff Categury $st->name Updated To $req->name Succesfully"], 200);
     }
 
     /**
@@ -84,8 +91,15 @@ class StafftypeController extends Controller
      * @param  \App\Models\stafftype  $stafftype
      * @return \Illuminate\Http\Response
      */
-    public function destroy(stafftype $stafftype)
+    public function destroy(Request $req,stafftype $stafftype,$id)
     {
         //
+        if(!($req->header('UserType')=='admin')){
+            return response(["msg"=>"You can't Update Staff Categury Data"],200);
+        }
+
+        $st= $stafftype->find($id);
+        $stafftype->find($id)->destroy($id);
+        return response(["msg" => "Staff Categury $st->name Deleted Succesfully"], 200);
     }
 }

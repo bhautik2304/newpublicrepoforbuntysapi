@@ -1,22 +1,25 @@
 [
     // store-schema
     {
-        "store_name": "",
-        "store_user_name": "",
-        "email": "",
-        "phone": "",
-        "password": "",
-        "address": "",
-        "city": "",
-        "area": "",
-        "pin": "",
-        "insta_link": "",
-        "google_map_link": "",
-        "facebook_link": "",
-        "youtube_link": "",
-        "open_time": "",
-        "close_time": ""
-    },
+        "name":"Buntys Skin Studio",
+        "avatar":"jnzxpxv",
+        "email":"dndtecnosol@gmail.com",
+        "mobaile":"6358006532",
+        "whatsapp_no":"6358006532",
+        "password":"23042000",
+        "opentime":"09:00:00",
+        "closetime":"22:00:00",
+        "address":"n;nvbxb bm;b lkbm blm;bn",
+        "pin":"390023",
+        "city":"vadodara",
+        "map":"ldhiusdh ",
+        "state":"o;odzh",
+        "insta_link":"bdbvil;sd",
+        "facebook_link":"vndlvol",
+        "gmail_id":"knfvlzbov",
+        "lat":"nvkzbiuv",
+        "long":"cksbv"
+        },
     // appoitment
     {
         "storeid": "1",
@@ -28,6 +31,11 @@
         "nextappoitment": true
     }
     // costomer
+    {
+        "name":"silver costumer",
+        "minsale":"0",
+        "maxsale":"1000"
+        },
     {
         "storeid": 1,
         "name": "bhautik",
@@ -66,5 +74,72 @@
         "gst": "",
         "gst_amount": "",
         "paid": ""
+    },
+
+    // staff cate
+    {
+        "name": "1"
     }
+    // staff
+    {
+        "stufftype": "1",
+        "firstname": "Ramesh Bhai",
+        "secondname": "Rathod",
+        "lastame": "Bhautik",
+        "email": "dndtecnosol@gmail.com",
+        "mobaile": "6358006532",
+        "whatmobaile": "6358006532",
+        "birthday": "2000-04-23",
+        "marrige_anny": "2000-04-23",
+        "gender": "1",
+        "marit_status": "",
+        "city": "",
+        "state": "",
+        "pin": "",
+        "permenentAddress": "",
+        "ResidentAddresses": "",
+        "jobstart": "10:00:00",
+        "jobhours": "12 hours",
+        "Weekend": "tue",
+        "sallery": "12000",
+        "ProductSale": "10",
+        "serviceSale": "10",
+        "serviceExicute": "10",
+        "PkgSale": "10",
+        "addhar_no": "",
+        "pan_no": "",
+        "drl_no": "",
+        "ins": false,
+        "mediClaim": false,
+        "pf": false,
+        "bank_account_no": "",
+        "bank_account_ifc": "",
+        "bank_name": "",
+        "bank_account_holder_name": "",
+        "profile_img": "",
+        "adhar_card": "",
+        "pancard": "",
+        "driving_liences": "",
+        "bankstatement": ""
+      }
 ]
+// product
+{
+    "producttypes_id":"",
+    "brand_id":"",
+    "name":"",
+    "cost":"",
+    "price":"",
+    "per_unite_price":"",
+    "special_price":"",
+    "uuid":"",
+    "status":"",
+    "discription":"",
+    "expiry_date":"",
+    "menuefacture_date":"",
+    "productcategury":"",
+    "qty":"",
+    "inventury_product_unit":"",
+    "inventury_product_qty":"",
+    "totale_qty":"",
+}

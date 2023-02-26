@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{servicetype,costumertype};
+use App\Models\{servicetype, costumertype};
 use Illuminate\Http\Request;
 
 class ServicetypeController extends Controller
@@ -15,7 +15,7 @@ class ServicetypeController extends Controller
     public function index()
     {
         //
-        return response(["servicetype"=>servicetype::all()],200);
+        return response(["servicetype" => servicetype::all()], 200);
     }
 
     /**
@@ -39,11 +39,11 @@ class ServicetypeController extends Controller
     {
         //
 
-        $tabel=new servicetype;
-        $tabel->name=$req->name;
+        $tabel = new servicetype;
+        $tabel->name = $req->name;
         $tabel->save();
 
-        return response(["msg"=>"Service Type $req->name Created Succesfully"],200);
+        return response(["msg" => "Service Type $req->name Created Succesfully"], 200);
     }
 
     /**
@@ -75,9 +75,13 @@ class ServicetypeController extends Controller
      * @param  \App\Models\servicetype  $servicetype
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $req, servicetype $servicetype)
+    public function update(Request $req, servicetype $servicetype, $id)
     {
         //
+        $service=$servicetype->find($id);
+        $servicestypes=$servicetype->find($id);
+        $servicestypes->update(['name' => $req->name]);
+        return response(["code"=>1,"msg"=>"You Updated $service->name To $req->name Service Categury Name"],200);
     }
 
     /**
@@ -86,8 +90,11 @@ class ServicetypeController extends Controller
      * @param  \App\Models\servicetype  $servicetype
      * @return \Illuminate\Http\Response
      */
-    public function destroy(servicetype $servicetype)
+    public function destroy(servicetype $servicetype, $id)
     {
         //
+        $servicetypes = $servicetype->find($id);
+        $servicetypes->destroy($id);
+        return response(["code"=>1,"msg"=>"You Remove $servicetypes->name Service Categury"],200);
     }
 }

@@ -67,9 +67,10 @@ trait sendSms
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($ch);
         curl_close($ch);
-        // $task = new taskupdate;
-        // $task->task_msg = $response;
-        // $task->save();
+        $task = new taskupdate;
+        $task->task_msg = $response;
+        $task->task_desciption = "send msg :- $message, on $numbers";
+        $task->save();
         // Process your response here
     }
 }

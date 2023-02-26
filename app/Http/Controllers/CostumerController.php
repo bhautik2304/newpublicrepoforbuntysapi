@@ -121,6 +121,9 @@ class CostumerController extends Controller
     public function update(Request $req, $id)
     {
         //
+        if(!($req->header('UserType')=='admin')){
+            return response(["msg"=>"You can't Update Costomer Data"],200);
+        }
         $costomer = costumer::where('id',$id)->first();
          $costomer->update([
             "storeid"=>$req->storeid,
@@ -162,24 +165,47 @@ class CostumerController extends Controller
      * @param  \App\Models\costumer  $costumer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(costumer $costumer)
+    public function destroy(costumer $costumer,$id,Request $req)
     {
         //
+        if(!($req->header('UserType')=='admin')){
+            return response(["msg"=>"You can't Delete Costomer Data"],200);
+        }
+        $cost=$costumer->find($id);
+        $costumer->find($id)->destroy($id);
+        return response(["msg"=>"Costumer $cost->name Deleted Successfully"],200);
     }
 
-    public function costomertypes(Request $req)
+    public function emailNotification(costumer $cos,$id,Request $req)
     {
         # code...
-        $tabel = new costumertype;
-        $tabel->name = $req->name;
-        $tabel->save();
-
-        return response(["msg" => "Costomer Type $req->name Created Succesfully"], 200);
+        // return $req->email_notyfication_status;
+        $cos->find($id)->update(['email_notyfication_status'=>$req->email_notyfication_status]);
+        $status=$req->email_notyfication_status ? "On" : "Off";
+        return response(["msg"=>"email notyfication status Notyfication $status","code"=>$req->email_notyfication_status],200);
     }
 
-    public function costomer(Request $req)
+    public function mobaileNotification(costumer $cos,$id,Request $req)
     {
         # code...
-        return response(["costumertype" => costumertype::all()], 200);
+        $cos->find($id)->update(['mobaile_notyfication_status'=>$req->mobaile_notyfication_status]);
+        $status=$req->mobaile_notyfication_status ? "On" : "Off";
+        return response(["msg"=>"mobaile notyfication status Notyfication $status","code"=>$req->mobaile_notyfication_status],200);
+    }
+
+    public function whatsappNotification(costumer $cos,$id,Request $req)
+    {
+        # code...
+        $cos->find($id)->update(['whatsapp_notyfication_status'=>$req->whatsapp_notyfication_status]);
+        $status=$req->whatsapp_notyfication_status ? "On" : "Off";
+        return response(["msg"=>"whatsapp notyfication status Notyfication $status","code"=>$req->whatsapp_notyfication_status],200);
+    }
+
+    public function promo_smsNotification(costumer $cos,$id,Request $req)
+    {
+        # code...
+        $cos->find($id)->update(['promo_sms'=>$req->promo_sms]);
+        $status=$req->promo_sms ? "On" : "Off";
+        return response(["msg"=>"promo sms Notyfication $status","code"=>$req->promo_sms],200);
     }
 }

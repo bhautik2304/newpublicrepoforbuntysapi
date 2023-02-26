@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class servicetype extends Model
 {
     use HasFactory;
-
+    protected $fillable=['name'];
     protected $table = "servicestypes";
 }

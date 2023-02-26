@@ -44,9 +44,13 @@ class ServiceController extends Controller
         $table->servicetypeid=$req->servicetypeid;
         $table->name=$req->name;
         $table->price=$req->price;
+        $table->offer_price=$req->offer_price;
         $table->minprice=$req->minprice;
         $table->service_duration=$req->service_duration;
+        $table->product_id=$req->product_id;
+        $table->servis_cost=$req->servis_cost;
         $table->service_time=$req->service_time;
+        $table->service_duration=$req->service_duration;
         $table->save();
         // Broadcast::event
         event(new storeUpdate('Update Store'));

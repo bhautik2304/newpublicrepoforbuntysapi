@@ -15,28 +15,36 @@ class CreateStoresTable extends Migration
     {
         Schema::create('stores', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->string('name');
-            $table->text('avatar')->nullable();
-            $table->text('logo')->nullable();
             $table->string('email')->nullable();
+            $table->string('store_email')->nullable();
             $table->string('mobaile')->nullable();
             $table->string('whatsapp_no')->nullable();
-            $table->text('password')->nullable();
             $table->string('opentime')->nullable();
             $table->string('closetime')->nullable();
             $table->string('address')->nullable();
             $table->string('pin')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
+            $table->string('locality')->nullable();
             $table->string('insta_link')->nullable();
             $table->string('facebook_link')->nullable();
-            $table->string('gmail_id')->nullable();
+            $table->string('whatsapp_chat_link')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('youtube')->nullable();
             $table->text('map')->nullable();
-            $table->string('lat')->nullable();
-            $table->string('long')->nullable();
+
+            $table->boolean('session')->default(false);
+            $table->time('session_start')->default(false);
+            $table->time('session_end')->default(false);
+            $table->text('password')->nullable();
+
             $table->text('divice_id')->nullable();
-            $table->text('token')->nullable();
+            $table->text('resetpassword_token')->nullable();
+            $table->text('session_token')->nullable();
             $table->string('otp')->nullable();
+
             $table->timestamps();
         });
     }

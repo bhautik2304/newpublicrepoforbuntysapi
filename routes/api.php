@@ -1,13 +1,8 @@
 <?php
 
-use App\Http\Controllers\{authcontroller, appointmentController, StafftypeController, StaffController, ServiceController, CostumerController, InvoiceController, RoletypeController, ServicetypeController, StoreController};
-use App\Mail\testmail;
-use App\Models\store;
-use Illuminate\Contracts\Mail\Mailer;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\{Route,Hash,Mail};
+use App\Http\Controllers\{StoreoffdayController,StorecloseController,StorenotyficationController ,StorenotyficationcateguryController,ProductController,vauchercontroller,vauchertypecontroller,ProducttypesController,productbrands,authcontroller,CostomercateguryController, appointmentController, CityController, StafftypeController, StaffController, ServiceController, CostumerController, InvoiceController, RoletypeController, ServicetypeController, settingController, StoreController};
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +16,7 @@ use Illuminate\Support\Facades\Mail;
 */
 // Auth Routes & Management
 Route::post('/login',[authcontroller::class,'login']);
+Route::post('/logout/{id}',[authcontroller::class,'logout']);
 Route::post('/resetpasswordrequst',[authcontroller::class,'resetPasswordRequst']);
 Route::post('/resetpasswordcheckotp',[authcontroller::class,'checkOtp']);
 Route::post('/resetpassword',[authcontroller::class,'resetPassword']);
@@ -42,19 +38,34 @@ Route::post('/invoice', [InvoiceController::class, 'getInvoice']);
 
 // costomer Opration Routes Hear
 Route::apiResource('/costomer', CostumerController::class);
-Route::put('/costomer/{id}', [CostumerController::class,'update']);
-Route::post('/costumertype', [CostumerController::class, 'costomertypes']);
-Route::get('/costumertype', [CostumerController::class, 'costomer']);
+Route::apiResource('/costumertype', CostomercateguryController::class);
+Route::put('/costomer/emailNotification/{id}',[CostumerController::class,'emailNotification']);
+Route::put('/costomer/mobaileNotification/{id}',[CostumerController::class,'mobaileNotification']);
+Route::put('/costomer/whatsappNotification/{id}',[CostumerController::class,'whatsappNotification']);
+Route::put('/costomer/promo_smsNotification/{id}',[CostumerController::class,'promo_smsNotification']);
+
 
 // store Management & Opration Hear
-Route::resource('/store', StoreController::class);
-Route::put('/store/{id}', [StoreController::class,'update']);
+Route::apiResource('/store', StoreController::class);
+Route::put('/updatetime/{id}',[StoreController::class,'updateStoreTime']);
 
 
 // Appointment Routes & management
 Route::apiResource('/appoitment', appointmentController::class);
 Route::post('/appoitment', [appointmentController::class,'store']);
 Route::put('/appoitment', [appointmentController::class,'update']);
+
+
+// product Mangement
+Route::apiResource('/product', ProductController::class);
+Route::apiResource('/producttype', ProducttypesController::class);
+Route::apiResource('/productbrand', productbrands::class);
+
+
+
+// voucher Mangement
+Route::apiResource('/vouchertype', vauchertypecontroller::class);
+Route::apiResource('/voucher', vauchercontroller::class);
 
 
 // stuff Mangement
@@ -72,8 +83,19 @@ Route::apiResource('/Service', ServiceController::class);
 // Report Routes Management
 
 
+// notification Routes Management
+Route::apiResource('/notification', StorenotyficationController::class);
+Route::apiResource('/notificationcatygury', StorenotyficationcateguryController::class);
+// closing Date Routes Management
+Route::apiResource('/time', StorecloseController::class);
+Route::apiResource('/closingdate', StoreoffdayController::class);
+
+
+// Report Routes Management
+Route::apiResource('/city', CityController::class);
+
 // Inventury Mange ment Routes
 Route::get('/test', function (Request $req) {
 
-  return  Mail::to($req->email)->send(new testmail(rand(0000,9999)));
+  return  404;
 });

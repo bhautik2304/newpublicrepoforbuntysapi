@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class costumertype extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'minsale',
+        'maxsale'
+    ];
+
+    public function costumer()
+    {
+        # code...
+        return $this->hasMany(costumer::class,'costocateguryid','id');
+    }
 }

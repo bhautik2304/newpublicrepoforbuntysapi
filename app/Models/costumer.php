@@ -29,12 +29,15 @@ class costumer extends Model
         "otp",
         "DOB",
         "Anniversary",
+
         "email_verified_at",
         "mobaile_verified_at",
         "whatsapp_verified_at",
+
         "email_verified_status",
         "mobaile_verified_status",
         "whatsapp_verified_status",
+
         "email_notyfication_status",
         "mobaile_notyfication_status",
         "whatsapp_notyfication_status",
@@ -45,7 +48,7 @@ class costumer extends Model
 
     protected static function booted(){
         static::addGlobalScope('store', function (Builder $builder) {
-           return $builder->with(['pastService','pkg','pastAppointment',]);
+           return $builder->with(['costumerType','pastService','pkg','pastAppointment',]);
         });
     }
 
@@ -71,6 +74,18 @@ class costumer extends Model
     {
         # code...
         return $this->hasMany(appointment::class,'costomer_id','id');
+    }
+
+    public function invoice()
+    {
+        # code...
+        return $this->hasMany(invoice::class,'costomer_id','id');
+    }
+
+    public function costumerType()
+    {
+        # code...
+        return $this->belongsTo(costumertype::class,'costocateguryid','id');
     }
 }
 

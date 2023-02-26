@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class vauchertype extends Model
 {
     use HasFactory;
+
+    protected $fillable=['name'];
 }

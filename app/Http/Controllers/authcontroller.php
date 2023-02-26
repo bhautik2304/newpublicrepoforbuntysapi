@@ -16,32 +16,33 @@ class authcontroller extends Controller
         # code...
 
         $user = user::where('email', $req->email)->orWhere('mobaile',$req->email)->first();
-        $store=store::where('email', $req->email)->orWhere('mobaile',$req->email)->first();
-        // return $store;
-        $users = $user ?  ["user"=>$user,"store"=>$user->storeid,"roletype"=>$user['role']->name] : ["user"=>$store,"store"=>$store->id,"roletype"=>"store"];
-        // dd();
-        if (!$users) {
+        if (!$user) {
             # User Not Found
             return response(["msg"=>"Users Not Find. Wrong Credentials","code"=>404],200);
         }
-        if (!Hash::check($req->password,$users['user']->password)) {
+        if (!Hash::check($req->password,$user->password)) {
             # code...
-            return response(["msg"=>"Wrong Password ".$users['user']->name,"code"=>404],200);
+            return response(["msg"=>"Wrong Password ".$user->name,"code"=>404],200);
         }
+        $token= $user->startSession($user);
+
+        return response(["msg"=>"User Find Out ","user"=>$user,"tocken"=>$token[0],"sessionid"=>$token[1],"code"=>200],200);
 
 
+    }
 
-        return response(["msg"=>"User Find Out ","user"=>$users,"code"=>200],200);
-
-
+    public function logout(Request $req,$id)
+    {
+        # code...
+        $users=User::find($id);
+        $users->endSession($req->header('sessionid'));
+        return response(["msg"=>"Session Logout","code"=>1],200);
     }
 
     public function resetPasswordRequst(Request $req)
     {
         # code...
-        $user = user::where('email', $req->email)->orWhere('mobaile',$req->email)->first();
-        $store=store::where('email', $req->email)->orWhere('mobaile',$req->email)->first();
-        $users = $user ?  $user : $store;
+        $users = user::where('email', $req->email)->orWhere('mobaile',$req->email)->first();
         if (!$users) {
             # User Not Found
             return response(["msg"=>"Users Not Find. Wrong Credentials","code"=>0],200);
@@ -55,25 +56,19 @@ class authcontroller extends Controller
     public function checkOtp(Request $req)
     {
         # code...
-        $user = user::where([['email', $req->email],['otp',$req->otp]])->orWhere([['mobaile',$req->email],['otp',$req->otp]])->first();
-        $store=store::where([['email', $req->email],['otp',$req->otp]])->orWhere([['mobaile',$req->email],['otp',$req->otp]])->first();
-        $users = $user ?  $user : $store;
-
+        $users = user::where([['email', $req->email],['otp',$req->otp]])->orWhere([['mobaile',$req->email],['otp',$req->otp]])->first();
         if (!$users) {
             # User Not Found
             return response(["msg"=>"Wrong otp","code"=>0],200);
         }
-        $token= $users->makeTocken();
+        $token= $users->makeOtpTocken();
         return response(["msg" => "Pls Reset Your Password", "code" => 1,"token"=>$token], 200);
     }
 
     public function resetPassword(Request $req)
     {
         # code...
-        $user = user::where([['email', $req->email],['token',$req->token]])->orWhere([['mobaile',$req->email],['token',$req->token]])->first();
-        $store=store::where([['email', $req->email],['token',$req->token]])->orWhere([['mobaile',$req->email],['token',$req->token]])->first();
-        $users = $user ?  $user : $store;
-
+        $users = user::where([['email', $req->email],['otptoken',$req->token]])->orWhere([['mobaile',$req->email],['otptoken',$req->token]])->first();
         if (!$users) {
             # User Not Found
             return response(["msg"=>"Wrong Credentials","code"=>0],200);

@@ -17,7 +17,7 @@ class appointmentController extends Controller
     {
         //
         // dd($req->date);
-        return response(['appoitment' => appointment::storeAppointment($req->header('UserType'),$req->header('Store'),$req->date)], 200);
+        return response(['appoitment' => appointment::storeAppointment($req->header('UserType'),$req->header('Store'))], 200);
     }
 
     /**

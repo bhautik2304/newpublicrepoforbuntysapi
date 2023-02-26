@@ -17,11 +17,11 @@ class CreateStaffTable extends Migration
             $table->id();
 
             $table->foreignId('storeid')->references('id')->on('stores')->onDelete('cascade');
-            $table->foreignId('stafftypesid')->references('id')->on('stores')->onDelete('cascade');
+            $table->foreignId('stafftypesid')->references('id')->on('stafftypes')->onDelete('cascade');
 
-            $table->string('name');
-            $table->string('lastname');
             $table->string('firstname');
+            $table->string('secondname');
+            $table->string('lastname');
 
             $table->string('email');
             $table->string('mobaile');
@@ -42,8 +42,8 @@ class CreateStaffTable extends Migration
 
 
             $table->string('city')->nullable();
-            $table->string('state')->unique()->nullable();
-            $table->string('pin')->unique()->nullable();
+            $table->string('state')->nullable();
+            $table->string('pin')->nullable();
             $table->text('per_add')->nullable();
             $table->text('res_add')->nullable();
 
@@ -76,6 +76,8 @@ class CreateStaffTable extends Migration
             $table->text('bank_account_doc')->nullable();
 
             $table->boolean('status')->nullable()->default(true);
+            $table->boolean('storelogin')->nullable()->default(false);
+            $table->boolean('stafflogin')->nullable()->default(true);
             $table->timestamps();
         });
     }

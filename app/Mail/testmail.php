@@ -29,6 +29,6 @@ class testmail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mail.invoicemail');
+        return $this->markdown('mail.testmail');
     }
 }

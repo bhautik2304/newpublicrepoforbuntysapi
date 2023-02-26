@@ -15,15 +15,17 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('storeid')->references('id')->on('stores')->onDelete('cascade');
-            $table->foreignId('role_id')->references('id')->on('roletypes')->onDelete('cascade');
+            $table->unsignedBigInteger('store_id')->nullable(true);
+            $table->unsignedBigInteger('staff_id')->nullable(true);
             $table->string('name');
+            $table->enum('role',["masteradmin",'store','staff','costumer','developer']);
             $table->string('email')->unique()->nullable();
             $table->string('mobaile')->unique()->nullable();
             $table->text('divice_id')->nullable();
             $table->text('password')->nullable();
             $table->string('otp')->nullable();
-            $table->text('token')->nullable();
+            $table->text('otptoken')->nullable();
+            $table->text('sessiontoken')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
