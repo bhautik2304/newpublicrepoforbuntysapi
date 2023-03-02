@@ -15,7 +15,7 @@ class ProductController extends Controller
     public function index()
     {
         //
-        return response(["producttypes" => product::all()], 200);
+        return response(["product" => product::all()], 200);
 
     }
 
