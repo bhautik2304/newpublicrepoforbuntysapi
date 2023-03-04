@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->foreignId('producttypes_id')->references('id')->on('producttypes')->onDelete('cascade');
             $table->unsignedBigInteger('brand_id')->nullable(true);
 
-            $table->enum('productcategury',['insallon','selling']);
+            $table->enum('productcategury', ['insalon', 'selling']);
 
             $table->string('name')->nullable(true);
             $table->string('cost')->nullable(true);

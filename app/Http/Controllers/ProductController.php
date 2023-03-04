@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\product;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -47,8 +48,7 @@ class ProductController extends Controller
         $product->price = $req->price;
         $product->per_unite_price = $req->per_unite_price;
         $product->special_price = $req->special_price;
-        $product->uuid = $req->uuid;
-        $product->status = $req->status;
+        $product->uuid = Str::uuid();
         $product->discription = $req->discription;
         $product->expiry_date = $req->expiry_date;
         $product->menuefacture_date = $req->menuefacture_date;
@@ -91,9 +91,10 @@ class ProductController extends Controller
      * @param  \App\Models\product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, product $product, $id)
+    public function update(Request $request, $id)
     {
         //
+        $product = new product;
         $product->find($id)->update([
             "producttypes_id" => $request->producttypes_id,
             "brand_id" => $request->brand_id,
