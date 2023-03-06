@@ -12,23 +12,21 @@ class product extends Model
 
     protected $fillable = [
         'store_id',
-        'producttypes_id',
+        'productcategury_id',
         'brand_id',
+        'producttypes',
         'name',
         'cost',
         'price',
         'per_unite_price',
+        'unite_in_product',
         'special_price',
+        'is_special_price',
         'uuid',
         'status',
         'discription',
-        'expiry_date',
-        'menuefacture_date',
-        'productcategury',
-        'qty',
-        'inventury_product_unit',
         'inventury_product_qty',
-        'totale_qty',
+        'inventury_product_alert',
     ];
     protected static function booted()
     {

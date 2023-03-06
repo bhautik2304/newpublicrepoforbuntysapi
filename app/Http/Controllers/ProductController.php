@@ -41,22 +41,19 @@ class ProductController extends Controller
         //
         $product = new product;
         $product->store_id = $req->header('Store');
-        $product->producttypes_id = $req->producttypes_id;
+        $product->productcategury_id = $req->producttypes_id;
         $product->brand_id = $req->brand_id;
+        $product->producttypes = $req->productcategury;
         $product->name = $req->name;
         $product->cost = $req->cost;
         $product->price = $req->price;
         $product->per_unite_price = $req->per_unite_price;
+        $product->unite_in_product = $req->unite_in_product;
         $product->special_price = $req->special_price;
         $product->uuid = Str::uuid();
         $product->discription = $req->discription;
-        $product->expiry_date = $req->expiry_date;
-        $product->menuefacture_date = $req->menuefacture_date;
-        $product->productcategury = $req->productcategury;
-        $product->qty = $req->qty;
-        $product->inventury_product_unit = $req->inventury_product_unit;
-        $product->inventury_product_qty = $req->inventury_product_qty;
-        $product->totale_qty = $req->totale_qty;
+        $product->inventury_product_qty = $req->qty;
+        $product->inventury_product_alert = $req->alertqty;
         $product->save();
 
         return response(["msg" => "Product Created Successfully $product->name"], 200);
@@ -96,26 +93,23 @@ class ProductController extends Controller
         //
         $product = new product;
         $product->find($id)->update([
-            "producttypes_id" => $request->producttypes_id,
-            "brand_id" => $request->brand_id,
-            "name" => $request->name,
-            "cost" => $request->cost,
-            "price" => $request->price,
-            "per_unite_price" => $request->per_unite_price,
-            "special_price" => $request->special_price,
-            "uuid" => $request->uuid,
-            "status" => $request->status,
-            "discription" => $request->discription,
-            "expiry_date" => $request->expiry_date,
-            "menuefacture_date" => $request->menuefacture_date,
-            "productcategury" => $request->productcategury,
-            "qty" => $request->qty,
-            "inventury_product_unit" => $request->inventury_product_unit,
-            "inventury_product_qty" => $request->inventury_product_qty,
-            "totale_qty" => $request->totale_qty,
+            'store_id' =>$request->header('Store'),
+            'productcategury_id' => $request->producttypes_id,
+            'producttypes' => $request->productcategury,
+            'brand_id' => $request->brand_id,
+            'name' => $request->name,
+            'cost' => $request->cost,
+            'price' => $request->price,
+            'per_unite_price' => $request->per_unite_price,
+            'unite_in_product' => $request->unite_in_product,
+            'special_price' => $request->special_price,
+            'uuid' => $request->uuid,
+            'discription' => $request->discription,
+            'inventury_product_qty' => $request->qty,
+            'inventury_product_alert' => $request->alertqty,
         ]);
 
-        return response(["msg"=>"Product Updated Successfully"],200);
+        return response(["msg" => "Product Updated Successfully"], 200);
     }
 
     /**

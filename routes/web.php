@@ -1,7 +1,7 @@
 <?php
 use App\Http\Controllers\{appointmentController, pagecontroller,testController};
 use Illuminate\Support\Facades\Route;
-
+$client = new \GuzzleHttp\Client();
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,4 +45,5 @@ use Illuminate\Support\Facades\Route;
 //     event(new storeUpdate('new msg'));
 // });
 Route::get('/', [pagecontroller::class, 'dashbord']);
-Route::get('/test',[testController::class,'sendSms']);
+Route::get('/test',[testController::class,'testChannel']);
+Route::get('/wtest',[testController::class,'wtestChannel']);
